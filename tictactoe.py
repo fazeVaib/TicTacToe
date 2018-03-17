@@ -51,7 +51,7 @@ def computerTurn():
 
 
 def playerTurn():
-    num = int(input('Your move on: ').strip())
+    num = int(input('Your move on [1-9]: ').strip())
     while boardValues[num-1] != ' ':
         print('Already filled. Enter again!')
         num = int(input('Your move on: ').strip())
