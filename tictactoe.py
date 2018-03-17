@@ -1,8 +1,8 @@
 import random
 
-boardValues = ['O', 'O', 'O', ' ', ' ', ' ', ' ', ' ', ' ']
-compSym = ' '
-playerSym = ' '
+boardValues = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+compSym = 'X'
+playerSym = 'O'
 
 
 def displayBoard():
@@ -34,22 +34,36 @@ def ifWon():
         return False
 
 
+def GuessCompMove():
+    return random.randint(0, 8)
+
 def computerTurn():
+    num = GuessCompMove()
+    while boardValues[num] != ' ':
+        num = GuessCompMove()
+    boardValues[num] = compSym
+    displayBoard()
+
     if ifWon():
         print("You Lose")
         quit()
-    # TODO:
+        
 
 
 def playerTurn():
-    input("Enter position to put %s", playerSym)
+    num = int(input('Your move on: ').strip())
+    while boardValues[num-1] != ' ':
+        print('Already filled. Enter again!')
+        num = int(input('Your move on: ').strip())
+    boardValues[num-1] = playerSym
+    print()
+    displayBoard()
+
     if ifWon():
         print("You win")
         exit()
-    print("")
-    # TODO:
 
-
+        
 def makeYourTurn(turn):
     if turn == 'Computer':
         computerTurn()
@@ -57,19 +71,28 @@ def makeYourTurn(turn):
         playerTurn()
 
 
-def decideSymbol(firstWho):
-    if firstWho == 'Computer':
-        compSym = 'O'
-        playerSym = 'X'
+def nextTurn(turn):
+    if turn == 'Computer':
+        return 'Player'
     else:
-        compSym = 'X'
-        playerSym = 'O'
+        return 'Computer'
+
+# def decideSymbol(firstWho):
+#     if firstWho == 'Computer':
+#         compSym = 'O'
+#         playerSym = 'X'
+#     else:
+#         compSym = 'X'
+#         playerSym = 'O'
 
 
 if __name__ == '__main__':
     displayBoard()
     currentTurn = firstturn()
-    decideSymbol(currentTurn)
+    # decideSymbol(currentTurn)
     print("First turn is  of " + currentTurn)
     while(True):
+        print('\n {} turn.\n'.format(currentTurn))
         makeYourTurn(currentTurn)
+        currentTurn = nextTurn(currentTurn)
+
