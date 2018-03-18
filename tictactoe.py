@@ -52,38 +52,9 @@ def GuessCompMove():
     moveCondition_b(2, 4, 6),
     moveCondition_b(0, 4, 8)]
 
-    if arr[0] != -1:
-        return arr[0]
-    elif arr[1] != -1:
-        return arr[1]
-    elif arr[2] != -1:
-        return arr[2]
-    elif arr[3] != -1:
-        return arr[3]
-    elif arr[4] != -1:
-        return arr[4]
-    elif arr[5] != -1:
-        return arr[5]
-    elif arr[6] != -1:
-        return arr[6]
-    elif arr[7] != -1:
-        return arr[7]
-    elif arr[8] != -1:
-        return arr[8]
-    elif arr[9] != -1:
-        return arr[9]
-    elif arr[10] != -1:
-        return arr[10]
-    elif arr[11] != -1:
-        return arr[11]
-    elif arr[12] != -1:
-        return arr[12]
-    elif arr[13] != -1:
-        return arr[13]
-    elif arr[14] != -1:
-        return arr[14]
-    elif arr[15] != -1:
-        return arr[15]
+    for i in range(0,16):
+        if arr[i] != -1:
+            return arr[i]
     else:
         return random.randint(0, 8)
 
