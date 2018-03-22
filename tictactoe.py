@@ -3,6 +3,8 @@ import random
 boardValues = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 compSym = 'X'
 playerSym = 'O'
+pScore = 0
+cScore = 0
 
 
 def displayBoard():
@@ -86,12 +88,7 @@ def computerTurn():
     while boardValues[num] != ' ':
         num = GuessCompMove()
     boardValues[num] = compSym
-    displayBoard()
-
-    if ifWon():
-        print("YOU LOSE :(")
-        quit()
-        
+    displayBoard()        
 
 
 def playerTurn():
@@ -102,10 +99,6 @@ def playerTurn():
     boardValues[num-1] = playerSym
     print()
     displayBoard()
-
-    if ifWon():
-        print("YOU WON!")
-        exit()
 
         
 def makeYourTurn(turn):
@@ -124,7 +117,25 @@ def nextTurn(turn):
 def isDraw():
     if ' ' not in boardValues:
         print("MATCH DRAWN!")
+        print('\n SCORE:\t PLAYER: {} \t COMPUTER: {}'.format(pScore, cScore))
         exit()
+
+
+def checkWinner(currentTurn):
+    global pScore
+    global cScore
+    if ifWon():
+        if currentTurn is 'Player':
+            print("CONGRATS! WOU WON!\n")
+            pScore += 1
+        else:
+            print("BAD LUCK! YOU LOST!\n")
+            cScore += 1
+        return True
+    else:
+        return False
+
+
 
 # def decideSymbol(firstWho):
 #     if firstWho == 'Computer':
@@ -136,13 +147,21 @@ def isDraw():
 
 
 if __name__ == '__main__':
-    displayBoard()
-    currentTurn = firstturn()
-    # decideSymbol(currentTurn)
-    print("First turn is  of " + currentTurn)
-    while(True):
-        print('\n {} turn.\n'.format(currentTurn))
-        makeYourTurn(currentTurn)
-        currentTurn = nextTurn(currentTurn)
-        isDraw()
-
+    more = "Y"
+    while more == "Y" or more == 'y' :
+        boardValues = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        displayBoard()
+        currentTurn = firstturn()
+        # decideSymbol(currentTurn)
+        print("First turn is  of " + currentTurn)
+        while(True):
+            print('\n {} turn.\n'.format(currentTurn))
+            makeYourTurn(currentTurn)
+            if checkWinner(currentTurn):
+                break
+            currentTurn = nextTurn(currentTurn)
+            if isDraw():
+                break
+        print('Player: {} \t Computer: {}'.format(pScore, cScore))
+        more = str(input('Continue Playing? (Y/N): '))
+    print('\n FINAL SCORE: \n PLAYER = {} \n COMPUTER = {}'.format(pScore, cScore))
