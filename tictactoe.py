@@ -136,23 +136,12 @@ def checkWinner(currentTurn):
         return False
 
 
-
-# def decideSymbol(firstWho):
-#     if firstWho == 'Computer':
-#         compSym = 'O'
-#         playerSym = 'X'
-#     else:
-#         compSym = 'X'
-#         playerSym = 'O'
-
-
 if __name__ == '__main__':
     more = "Y"
     while more == "Y" or more == 'y' :
         boardValues = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         displayBoard()
         currentTurn = firstturn()
-        # decideSymbol(currentTurn)
         print("First turn is  of " + currentTurn)
         while(True):
             print('\n {} turn.\n'.format(currentTurn))
