@@ -117,8 +117,9 @@ def nextTurn(turn):
 def isDraw():
     if ' ' not in boardValues:
         print("MATCH DRAWN!")
-        print('\n SCORE:\t PLAYER: {} \t COMPUTER: {}'.format(pScore, cScore))
-        exit()
+        return True
+    else:
+        return False
 
 
 def checkWinner(currentTurn):
@@ -137,7 +138,7 @@ def checkWinner(currentTurn):
 
 
 if __name__ == '__main__':
-    more = "Y"
+    more = "y"
     while more == "Y" or more == 'y' :
         boardValues = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         displayBoard()
